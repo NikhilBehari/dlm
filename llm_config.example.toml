@@ -1,0 +1,11 @@
+# Copy this file to `llm_config.toml` and fill in your credentials.
+# `llm_config.toml` is gitignored and must never be committed.
+#
+# `provider` selects the backend; `api_key` and `model` are required.
+# Any remaining keys are passed to the provider constructor
+# (e.g. `temperature`, `max_tokens`).
+
+provider = "gemini"            # "openai" | "anthropic" | "gemini"
+model    = "gemini-2.5-flash"
+api_key  = "YOUR_API_KEY_HERE"
+temperature = 1.0

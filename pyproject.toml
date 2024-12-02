@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dlm"
+version = "0.1.0"
+description = "Decision-Language Models: LLM-discovered reward functions for restless multi-armed bandits."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Nikhil Behari" }]
+keywords = ["reinforcement-learning", "restless-bandits", "rmab", "llm", "reward-design"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "torch>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.5"]
+openai = ["openai>=1.30"]
+anthropic = ["anthropic>=0.30"]
+gemini = ["google-genai>=1.0"]
+
+[project.scripts]
+dlm = "dlm.cli:main"
+
+[project.urls]
+Homepage = "https://nikhilbehari.github.io/dlm"
+Repository = "https://github.com/NikhilBehari/dlm"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dlm"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]
+ignore = ["E501"]

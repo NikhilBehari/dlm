@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.log
+checkpoints/
+runs/
+.DS_Store
+tests/
+llm_config.toml
+outputs/
