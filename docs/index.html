@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+
+
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic' rel='stylesheet' type='text/css'>
+<head>
+<title>Decision-Language Model (DLM)</title>
+	<meta property="og:description" content="Decision-Language Model (DLM)"/>
+	<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:creator" content="@mmalex">
+	<meta name="twitter:title" content="Decision-Language Model (DLM)">
+	<meta name="twitter:description" content="Decision-Language Model (DLM)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+<body>
+<div class="container">
+    <div class="paper-title">
+        <h1>Decision-Language Model (DLM)</h1>
+        <h2 style="margin-top: -10px; margin-bottom: 10px">for Dynamic Restless Multi-Armed Bandit Tasks in Public Health</h2>
+
+        <div style="display: flex; justify-content: center; margin-top: 5px;">
+            <div style="background-color: #436C57; opacity: 100%; color: white; padding: 3px 10px; font-size: 12px; border-radius: 5px; text-align: center;">NeurIPS 2024</div>
+        </div>
+    </div>
+    
+    <div id="authors">
+        <div class="author-row">
+            <div class="col-6 text-center"><a href="https://nikhilbehari.github.io" target="_blank">Nikhil<br>Behari<sup>1+2</sup></a></div>
+            <div class="col-6 text-center"><a href="https://eddie.win" target="_blank">Edwin<br>Zhang<sup>2+3</sup></a></div>
+            <div class="col-6 text-center"><a href="https://yzhao3685.github.io" target="_blank">Yunfan<br>Zhao<sup>2</sup></a></div>
+            <div class="col-6 text-center"><a href="http://research.google/people/106890/" target="_blank">Aparna<br>Taneja<sup>4</sup></a></div>
+            <div class="col-6 text-center"><a href="https://dheerajnagaraj.com" target="_blank">Dheeraj<br>Nagaraj<sup>4</sup></a></div>
+            <div class="col-6 text-center"><a href="https://teamcore.seas.harvard.edu/tambe" target="_blank">Milind<br>Tambe<sup>2+4</sup></a></div>
+        </div>
+        <div class="affil-row" style="width: 70%; margin: 0 auto; margin-top: 20px; text-align: center;">
+            <div class="col-4 text-center"><sup>1</sup>MIT</div>
+            <div class="col-4 text-center"><sup>2</sup>Harvard University</div>
+            <div class="col-4 text-center"><sup>3</sup>OpenAI</div>
+            <div class="col-4 text-center"><sup>4</sup>Google</div>
+        </div>        
+    </div>
+
+    
+    <div style="clear: both">
+        <div class="paper-btn-parent">
+            <a class="paper-btn" href="https://arxiv.org/pdf/2402.14807">Paper</a>
+            <a class="paper-btn" href="https://github.com/NikhilBehari/dlm" target="_blank">Code</a>
+        </div>
+    </div>
+    
+    <!-- <section id="teaser">
+            <figure style="width: 100%;">
+                <a href="assets/overview.png">
+                    <img width="70%" src="assets/overview.png" class="center">
+                </a>
+                <p class="caption" style="margin-bottom: 1px;  text-align: justify">
+                </p>
+            </figure>
+    </section> -->
+    
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 0 auto;">
+        <iframe src="https://drive.google.com/file/d/1vZRnz1iJyphNBh7o3L8Ztjrb91i6iQHV/preview" style="width: 100%; max-width: 1000px; height: 400px; border: none; border-radius: 10px;" allow="autoplay"></iframe>
+    </div>
+    
+	<section id="abstract"/>
+		<h2>Abstract</h2>
+		<hr>
+		<p>
+            Restless multi-armed bandits (RMAB) have demonstrated success in optimizing resource allocation for large beneficiary populations in public health settings. Unfortunately, RMAB models lack flexibility to adapt to evolving public health policy priorities. Concurrently, Large Language Models (LLMs) have emerged as adept automated planners across domains of robotic control and navigation. In this paper, we propose a Decision Language Model (DLM) for RMABs, enabling dynamic fine-tuning of RMAB policies in public health settings using human-language commands. We propose using LLMs as automated planners to (1) interpret human policy preference prompts, (2) propose reward functions as code for a multi-agent RMAB environment, and (3) iterate on the generated reward functions using feedback from grounded RMAB simulations. We illustrate the application of DLM in collaboration with ARMMAN, an India-based non-profit promoting preventative care for pregnant mothers, that currently relies on RMAB policies to optimally allocate health worker calls to low-resource populations. We conduct a technology demonstration in simulation using the Gemini Pro model, showing DLM can dynamically shape policy outcomes using only human prompts as input.
+        </p>
+	</section>
+
+
+	<section id="method"/>
+		<h2>Method</h2>
+		<hr>
+    
+        <figure style="width: 100%;">
+            <a href="img/dlm_method.png">
+                <img width="100%" src="img/dlm_method.png">
+            </a>
+            <p  class="caption" style="margin-bottom: 1px;  text-align: justify">
+                We provide three context descriptions to the LLM: a language command (full list of commands in Table 1), a list of per-arm demographic features available for proposed reward functions, and syntax cues enabling LLM reward function output directly in code. From this context, the 1) LLM then proposes 2) candidate reward functions which are used to train 3) optimal policies under proposed rewards. Trained policies are simulated to generate 4) policy outcome comparisons showing state-feature distributions over key demographic groups. Finally, we query an LLM to perform 5) self-reflection by choosing the best candidate reward aligning with the original language command; selected candidates are used as context to guide future reward generation.
+            </p>
+        </figure>
+
+        <figure style="width: 100%;">
+            <a href="img/dlm_alg.png">
+                <center>
+                    <img width="70%" src="img/dlm_alg.png">
+                </center>
+            </a>
+            <p  class="caption" style="margin-bottom: 1px;  text-align: justify">     
+                In the reward function generation phase, the LLM is prompted with three key components: (1) a human-language command describing a desired policy outcome for a feature-based group, (2) feature information such as demographics or socioeconomic data relevant to policy outcomes, and (3) context regarding the RMAB setting and code implementation. The LLM uses this input to extract relevant features and propose reward functions as code to align with the specified policy goals, incorporating a multi-agent simulation stage to refine alignment.
+            </p>
+        </figure>
+
+
+	</section>
+
+    <section id="method"/>
+    <h2>Results</h2>
+    <hr>
+
+    <figure style="width: 100%;">
+        <a href="img/dlm_results.png">
+            <center>
+            <img width="100%" src="img/dlm_results.png">
+            </center>
+        </a>
+        <p  class="caption" style="margin-bottom: 1px;  text-align: justify">
+            We compute normalized reward for each method over 200 seeds and report the interquartile mean (IQM) and standard error of the IQM across all runs. We compare the topline Base reward policy to the performance of DLM with No Reflection and with Reflection. We also compare to a No Action and Random policy, and a Default policy that demonstrates how the original fixed reward function performs for each new task. Our method achieves near-base reward performance across tasks and consistently outperforms the fixed Default reward policy in a completely automated fashion. For some tasks, DLM with Reflection significantly improves upon zero-shot proposed reward.
+        </p>
+    </figure>
+
+    <figure style="width: 100%;">
+        <a href="img/dlm_examples.png">
+            <center>
+            <img width="80%" src="img/dlm_examples.png">
+            </center>
+        </a>
+        <p  class="caption" style="margin-bottom: 1px;  text-align: justify">
+            Examples of DLM-generated reward functions vs. ground truth Base reward. Rewards reformatted for clarity; s represents the binary state, numbers are scalar multiplier quantities, and named features, each binary quantities, are shown. In some cases (e.g., Older Bias), DLM may identify relevant features zero-shot and use reflection to refine weights. Alternatively, reflection may help refine features (e.g., Age Distribution Tail Emphasis). However, when prompts are ambiguous (e.g., Technically Challenged), reflection may not have sufficient signal to effectively iterate; in these cases, additional human feedback may be required.
+        </p>
+    </figure>
+
+
+    <figure style="width: 100%;">
+        <a href="img/dlm_analysis.png">
+            <center>
+            <img width="80%" src="img/dlm_analysis.png">
+            </center>
+        </a>
+        <p  class="caption" style="margin-bottom: 1px;  text-align: justify">
+            Average precision/recall of features in LLM-proposed reward functions vs. ground truth Base reward function. Comparison between zeroshot DLM (No Reflection) and DLM (Reflection). Cells in yellow showed improvement from Reflection with <i>p</i>&lt;0.1; cells in green showed improvement from Reflection with <i>p</i>&lt;0.05. Results indicate LLMs are very effective feature extractors for reward function generation. Furthermore, the Reflection module is particularly useful for improving recall rates, as 13/16 tasks showed significant recall improvement with Reflection.        </p>
+    </figure>
+
+    </div>
+
+
+</section>
+
+    <section id="bibtex">
+        <h2>Citation</h2>
+        <hr>
+        <pre>@inproceedings{behari2024dlm,
+  title     = {Decision-Language Model (DLM) for Dynamic Restless Multi-Armed Bandit Tasks in Public Health},
+  author    = {Behari, Nikhil and Zhang, Edwin and Zhao, Yunfan and Taneja, Aparna and Nagaraj, Dheeraj and Tambe, Milind},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2024},
+}</pre>
+    </section>
+
+</div>
+
+</body>
+</html>
